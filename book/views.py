@@ -35,15 +35,15 @@ def book_update(request, id):
         form = forms.BookForm(instance=book_object, data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('Book Updated Successfully')
+            #return HttpResponse('Book Updated Successfully')
+            return redirect(reverse("books:book"))
+
     else:
         form = forms.BookForm(instance=book_object)
     return render(request, 'book_update.html', {'form': form, 'object': book_object})
-    # return redirect(reverse("books:book_1"))
 
 
 def book_delete(request, id):
     book_object = get_object_or_404(models.Book, id=id)
     book_object.delete()
     return HttpResponse('Book Deleted')
-    # return redirect(reverse("books:books_all"))
