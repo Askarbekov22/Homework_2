@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Дз№3</title>
+    <title>Дз№4</title>
 </head>
 <style>
     .button__container.btn-primary{
@@ -22,6 +23,10 @@
             <p>{{ book.created_date }}</p>
         </li>
     </ul>
+    <div class="card-body body__button">
+        <button type="button" class="btn btn-primary"><a href="/books/{{ book.id }}/update/">Change {{ book.title }}</a></button>
+        <button type="button" class="btn btn-primary"><a href="/books/{{ book.id }}/delete/">Delete {{ books.title }}</a></button>
+    </div>
 </div>
 </body>
 </html>

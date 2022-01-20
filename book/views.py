@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
 from django.shortcuts import get_object_or_404
-from . import form
+from . import forms
 from django.http import HttpResponse
+from django.urls import reverse
 
 
 # Create your views here.
@@ -19,12 +20,30 @@ def book_2(request, id):
 def add_book(request):
     method = request.method
     if method == 'POST':
-        forms = form.BookForm(request.POST, request.FILES)
-        if forms.is_valid():
-            forms.save()
+        form = forms.BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
             return HttpResponse('Book created')
     else:
-        forms = form.BookForm()
-    return render(request, 'add_book.html', {'forms': forms})
+        form = forms.BookForm()
+    return render(request, 'add_book.html', {'form': form})
 
 
+def book_update(request, id):
+    book_object = get_object_or_404(models.Book, id=id)
+    if request.method == 'POST':
+        form = forms.BookForm(instance=book_object, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('Book Updated Successfully')
+    else:
+        form = forms.BookForm(instance=book_object)
+    return render(request, 'book_update.html', {'form': form, 'object': book_object})
+    # return redirect(reverse("books:book_1"))
+
+
+def book_delete(request, id):
+    book_object = get_object_or_404(models.Book, id=id)
+    book_object.delete()
+    return HttpResponse('Book Deleted')
+    # return redirect(reverse("books:books_all"))
