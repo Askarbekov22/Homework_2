@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Дз№4</title>
+    <title>Дз№5</title>
 </head>
 <style>
     .button__container.btn-primary{
@@ -17,15 +17,36 @@
 <div>
     <ul>
         <li>
-            <h2>{{ book.title }}</h2>
-            <p> {{ book.description }}</p>
-            <img src="{{ book.image.url }}" alt="">
-            <p>{{ book.created_date }}</p>
+            <h2>{{ object.title }}</h2>
+            <p> {{ object.description }}</p>
+            <img src="{{ object.image.url }}" alt="">
+            <p>{{ object.created_date }}</p>
         </li>
     </ul>
+    <div class="expert">
+        <h2>Expert</h2>
+            {% for i in object.Expert_Recomendation.all %}
+                <p>Эксперт: {{ i.expert.name }}</p>
+                <p >Автобиография:{{ i.expert.info_about_expert }}</p>
+                <p>Деятельность: {{ i.expert.job_expert }}</p>
+                <p>Отзыв: {{ i.recomendation_book }}</p>
+            {% endfor %}
+    </div>
+    <div>
+        <h2>Comments:</h2>
+        <ul>
+            {% for i in object.books_comment.all %}
+             <li>
+                <p>{{ i.text }}</p>
+                <p>{{ i.created_date }}</p>
+             </li>
+            {% endfor %}
+        </ul>
+    </div>
     <div class="card-body body__button">
-        <button type="button" class="btn btn-primary"><a href="/books/{{ book.id }}/update/">Change {{ book.title }}</a></button>
-        <button type="button" class="btn btn-primary"><a href="/books/{{ book.id }}/delete/">Delete {{ books.title }}</a></button>
+        <button type="button" class="btn btn-primary"><a href="/books/{{ object.id }}/update/">Change {{ object.title }}</a></button>
+        <button type="button" class="btn btn-primary"><a href="/books/{{ object.id }}/delete/">Delete {{ object.title }}</a></button>
+        <button type="button" class="btn btn-primary"><a href="/add-books/">Add new books</a></button>
     </div>
 </div>
 </body>

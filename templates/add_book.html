@@ -1,14 +1,67 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Books</title>
+    <title>Add Shows</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css/' %}"/>
 </head>
+
+<style>
+    .btn-primary {
+        background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+        max-width: 960px;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .forms-form {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 130px;
+    }
+
+    .form-control {
+        border-radius: 16px;
+        transition: all 0.5s ease;
+
+    }
+    .form-control:hover{
+        background: #0dcaf0;
+        /*transform: rotate(180deg);*/
+    }
+    .form-label input, textarea, select{
+        border-radius: 16px;
+        outline: none;
+        border: none;
+        /*border: 1px solid #0dcaf0;*/
+    }
+
+    body {
+        background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+        height: 100%;
+    }
+</style>
 <body>
-<form action="/add-book/" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <input type="submit" value="Add Book" />
-</form>
+<div class="container button__add__container">
+    <button type="button" class="btn btn-primary"><a href="/books/">Books</a></button>
+</div>
+<div class="container forms-form">
+    <div class="mb-3">
+        <div class="row gy-6">
+            <form action="/add-books/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-9">
+                    <label for="formFile" class="form-label">{{ form.as_p }}</label>
+                    <input class="form-control" type="submit" id="formFile" value="Add">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
