@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object.title }}</title>
+</head>
+<body>
+
+<style>
+    .content{
+        min-height: 500px;
+    }
+    .content img{
+        height: 500px;
+        float: right;
+    }
+    .content__d{
+        margin-left: 20px;
+    }
+    body{
+        min-height: 100vh;
+    }
+    .update_btn{
+        width: 100px;
+        background-color: orange;
+        transition: all 0.5s;
+        border: 3px solid transparent;
+    }
+    .update_btn:hover{
+        border: 3px solid white;
+        background-color: white;
+    }
+    .update_btn a{
+        transition: all 0.5s;
+        text-decoration: none;
+        color: #fff;
+    }
+    .update_btn:hover a{
+        color: orange;
+    }
+    .comments{
+        display: block;
+        width: 45%;
+    }
+    .expert{
+        width: 45%;
+    }
+    .review{
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+    <div class="content">
+        <img class="content_img" src="{{ object.image }}" alt="">
+        <div class="content__d">
+            <h2>{{ object.title }}</h2>
+            <p>Описание пока нету))</p>
+        </div>
+
+        <!-- <div class="s">
+        <div class="btn">
+            <button type="button" class="update_btn"><a href="/books/{{ object.id }}/update/">Обновить</a></button>
+            <button type="button" class="update_btn"><a href="/books/{{ object.id }}/delete/">Удалить</a></button>
+        </div>
+    </div> -->
+
+    </div>
+</div>
+</body>
+</html>

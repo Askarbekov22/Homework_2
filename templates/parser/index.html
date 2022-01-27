@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Дз№5</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css/' %}"/>
+</head>
+<body>
+<style>
+    .posts__container {
+        max-width: 900px;
+        margin-bottom: 40px;
+    }
+
+    body {
+        background-color: #4158D0;
+        background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    }
+
+    .post__img {
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .btn-primary {
+        background-color: #020024;
+        background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+
+    }
+    .button__container {
+        max-width: 900px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+</style>
+
+
+<div class="container button__container">
+    <a href="/books/" class="btn btn-primary">Books</a>
+
+</div>
+
+<div class="container posts__container">
+    <div class="row gy-5">
+        {% for i in object_list%}
+        <div class="col-lg-3">
+            <div class="card">
+                <img src="{{ i.image }}" class="card-img-top post__img" alt="...">
+                <div class="card-body">
+                    <p class="card-title">{{ i.title }}</p>
+                    <a href="films/{{ i.id }}" class="card-btn">
+                <span class="card-btn_text">
+                   <span>more</span>
+                </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+</body>
+</html>
